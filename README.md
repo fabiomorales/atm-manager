@@ -24,6 +24,22 @@ Ou
 npx knex
 ```
 
+Instalação das dependencias
+
+```
+yarn install
+```
+Ou
+```
+npm i
+```
+
+Para iniciar o prjeto em modo de desenvolvimento utilize o comando abaixo
+
+```
+yarn dev
+```
+
 Criação do container Docker com imagem do Postgresql
 
 ```
@@ -47,6 +63,12 @@ yarn migrate:make {nome-da-migration}
 
 
 Para rodar as migrations utilize o comando abaixo
+
+```
+yarn migrate:run
+```
+
+Para iniciar o prjeto em modo de desenvolvimento utilize o comando abaixo
 
 ```
 yarn migrate:run
