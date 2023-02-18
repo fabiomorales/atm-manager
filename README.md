@@ -60,6 +60,10 @@ Para criar novas migrations utilize o comando abaixo
 ```
 yarn migrate:make {nome-da-migration}
 ```
+Ou
+```
+npm run migrate:makes {nome-da-migration}
+```
 
 
 Para rodar as migrations utilize o comando abaixo
@@ -67,9 +71,17 @@ Para rodar as migrations utilize o comando abaixo
 ```
 yarn migrate:run
 ```
+Ou
+```
+npm run migrate:run
+```
 
 Para iniciar o prjeto em modo de desenvolvimento utilize o comando abaixo
 
 ```
-yarn migrate:run
+yarn dev
+```
+Ou
+```
+npm run dev
 ```
