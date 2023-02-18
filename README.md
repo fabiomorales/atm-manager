@@ -34,11 +34,7 @@ Ou
 npm i
 ```
 
-Para iniciar o prjeto em modo de desenvolvimento utilize o comando abaixo
-
-```
-yarn dev
-```
+Antes de rodar o projeto precisamos configurar o banco de dados
 
 Criação do container Docker com imagem do Postgresql
 
