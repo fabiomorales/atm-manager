@@ -49,7 +49,7 @@ class CreateMovementService {
 
     const dispenseNotesResult = dispenseNotes(value, notes);
 
-    const description = mountDescription(dispenseNotesResult);
+    const description = mountDescription(atm.identification, dispenseNotesResult);
 
     const atmValues = mountNewAtmValues(atm, dispenseNotesResult);
 

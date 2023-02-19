@@ -1,6 +1,6 @@
 import { NotesUsedType } from './interfaces';
 
-export const mountDescription = (notes: Partial<NotesUsedType>): string => {
+export const mountDescription = (identificationAtm: string, notes: Partial<NotesUsedType>): string => {
   const translateNote = {
     hundred_bill: 100,
     fifty_bill: 50,
@@ -16,5 +16,5 @@ export const mountDescription = (notes: Partial<NotesUsedType>): string => {
     return acc;
   }, '');
 
-  return result;
+  return `${identificationAtm}, ${result}`;
 };
