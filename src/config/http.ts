@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import '@shared/container';
 import '@shared/infra/knexorm';
 import AppError from '@shared/errors/AppError';
