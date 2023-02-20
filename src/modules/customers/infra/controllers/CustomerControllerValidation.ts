@@ -13,11 +13,6 @@ export const createValidation = validation(getSchema => ({
       balance: yup.number().required().min(2),
     }),
   ),
-  params: getSchema<IFindCustomer>(
-    yup.object().shape({
-      email: yup.string().required().email(),
-    }),
-  ),
 }));
 
 export const showValidation = validation(getSchema => ({
