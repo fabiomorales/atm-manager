@@ -1,11 +1,12 @@
 import { IUpdateAtm } from '@modules/atm/domain/models/IUpdateAtm';
 import AppError from '@shared/errors/AppError';
+import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'tsyringe';
-import { IAtm } from '../../domain/models/IAtm';
 import { IAtmRepository } from '../../domain/repositories/IAtmRepository';
+import { calculateTotalBill } from './methods/calculateTotalBill';
 
 @injectable()
-class CreateAtmService {
+class UpdateAtmService {
   constructor(
     @inject('AtmRepository')
     private atmRepository: IAtmRepository,
@@ -13,26 +14,35 @@ class CreateAtmService {
 
   public async execute({
     id,
+    identification,
     qtd_fifty_bill,
     qtd_hundred_bill,
     qtd_ten_bill,
     qtd_twenty_bill,
-  }: IUpdateAtm): Promise<IAtm> {
-    const existAtmIdentification = await this.atmRepository.findById(id);
+  }: IUpdateAtm): Promise<number | unknown> {
+    try {
+      const atmExists = await this.atmRepository.findById(id);
 
-    if (existAtmIdentification) {
-      throw new AppError('Já existe um ATM com essa identificação', 401);
+      if (!atmExists) {
+        throw new AppError('Não Existe ATM com esse ID', StatusCodes.NOT_FOUND);
+      }
+
+      const total_bill = calculateTotalBill({ qtd_fifty_bill, qtd_hundred_bill, qtd_ten_bill, qtd_twenty_bill });
+
+      await this.atmRepository.update(id, {
+        identification,
+        qtd_fifty_bill,
+        qtd_hundred_bill,
+        qtd_ten_bill,
+        qtd_twenty_bill,
+        total_bill,
+      });
+
+      return StatusCodes.OK;
+    } catch (error) {
+      return error;
     }
-
-    const atmUpdated = await this.atmRepository.update(id, {
-      qtd_fifty_bill,
-      qtd_hundred_bill,
-      qtd_ten_bill,
-      qtd_twenty_bill,
-    });
-
-    return atmUpdated;
   }
 }
 
-export default CreateAtmService;
+export default UpdateAtmService;
