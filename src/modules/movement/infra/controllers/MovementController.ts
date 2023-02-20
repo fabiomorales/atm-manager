@@ -23,9 +23,9 @@ export default class MovementController {
   public async list(request: Request<IListMovementByCustomer>, response: Response): Promise<Response> {
     const { customerId } = request.params;
 
-    const createMovement = container.resolve(ListMovementByCustomerService);
+    const listMovement = container.resolve(ListMovementByCustomerService);
 
-    const movement = await createMovement.execute({ customerId });
+    const movement = await listMovement.execute({ customerId });
 
     return response.json(movement);
   }

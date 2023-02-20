@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import MovementController from '../controllers/MovementController';
+import { createValidation, showValidation } from '../controllers/MovementControllerValidation';
 
 const movementRouter = Router();
 const movementController = new MovementController();
 
-movementRouter.get('/:customerId', movementController.list);
+movementRouter.get('/:customerId', showValidation, movementController.list);
 
-movementRouter.post('/', movementController.create);
+movementRouter.post('/', createValidation, movementController.create);
 
 export default movementRouter;
