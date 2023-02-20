@@ -81,3 +81,12 @@ Ou
 ```
 npm run dev
 ```
+Para rodar os testes unitários rode o comando abaixo
+
+```
+yarn test:unit
+```
+Ou
+```
+npm run test:unit
+```
