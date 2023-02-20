@@ -9,10 +9,14 @@ class ListAtmService {
     private atmRepository: IAtmRepository,
   ) {}
 
-  public async execute(): Promise<Array<IAtm>> {
-    const atms = await this.atmRepository.findAll();
+  public async execute(): Promise<Array<IAtm> | unknown> {
+    try {
+      const atms = await this.atmRepository.findAll();
 
-    return atms;
+      return atms;
+    } catch (error) {
+      return error;
+    }
   }
 }
 
