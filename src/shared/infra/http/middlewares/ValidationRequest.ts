@@ -10,7 +10,7 @@ type TAllSchemas = Record<TProperty, Schema<any>>;
 
 type TGetAllSchemas = (getSchema: TGetSchema) => Partial<TAllSchemas>;
 
-type TValidation = (getAllSchemas: TGetAllSchemas) => RequestHandler;
+type TValidation = (getAllSchemas: TGetAllSchemas) => RequestHandler<unknown, unknown, unknown>;
 
 export const validation: TValidation = getAllSchemas => async (req, res, next) => {
   const schemas = getAllSchemas(schema => schema);
